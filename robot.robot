@@ -10,37 +10,29 @@ Library    Collections
 #     ${value}   SUM FUNCTION  ${2}  ${3}  # add the keywork of the function
 #     Should Be Equal   ${value}  ${5}
 
-# ConnectionToBrocker
-#     ${value}   connect to client and MQTT
-#     # Should Be True   ${value}
-#     Log    ${value}
+ConnectionToBrocker
+    ${CLIENT}   connect to client and MQTT
+    Set Global Variable    ${CLIENT}
+    Log    ${CLIENT}
 
 IO_1
-    ${value}   connect to client and MQTT
-    ${io1}   write LED 1 ${value}
-    # Should Be True   ${value}
+    ${io1}   write LED 1 ${CLIENT}
     Log    ${io1}
 
 IO_2
-    ${value}   connect to client and MQTT
-    ${io2}   write LED 2 ${value}
+    ${io2}   write LED 2 ${CLIENT}
+    Log    ${io2}
     # ${value}   write LED 16
     # Should Be True   ${value}
-    Log    ${value}
 
 IO_16
-    ${value}   connect to client and MQTT
-    ${io16}   write LED 16 ${value}
+    ${io16}   write LED 16 ${CLIENT}
+    Log    ${io16}
     # ${value}   write LED 16
     # Should Be True   ${value}
-    Log    ${io16}
 
 IO_18
-    ${value}   connect to client and MQTT
-    ${io18}   write LED 18 ${value}
-    # ${value}   write LED 16
-    # Should Be True   ${value}
+    ${io18}   write LED 18 ${CLIENT}
     Log    ${io18}
     # ${value}  write LED 18
-    # # Should Be True   ${value}
     # Log    ${value}
