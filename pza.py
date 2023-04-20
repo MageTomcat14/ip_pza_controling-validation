@@ -48,8 +48,6 @@ def writeLed1(VALUE):
     d1.direction.polling_cycle.set(10)
     time.sleep(1)
 
-    # pzaClient1.disconnect()
-
 @keyword("write LED 2 ${VALUE}")
 def writeLed2(VALUE):
 
@@ -80,7 +78,7 @@ def writeLed16(VALUE):
 def writeLed18(VALUE):
 
     d18 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPIC18, client=VALUE)
-
+    
     d18.direction.value.set("toggle_led_18")
     time.sleep(1)
     d18.direction.pull.set("open")

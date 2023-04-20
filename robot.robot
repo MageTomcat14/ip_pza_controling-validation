@@ -6,9 +6,6 @@ Library    Collections
 
 
 *** Test Cases ***
-# TestAddition
-#     ${value}   SUM FUNCTION  ${2}  ${3}  # add the keywork of the function
-#     Should Be Equal   ${value}  ${5}
 
 ConnectionToBrocker
     ${CLIENT}   connect to client and MQTT
