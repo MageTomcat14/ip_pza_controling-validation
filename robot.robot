@@ -12,24 +12,21 @@ ConnectionToBrocker
     Set Global Variable    ${CLIENT}
     Log    ${CLIENT}
 
-IO_1
-    ${io1}   write LED 1 ${CLIENT}
-    Log    ${io1}
+# create the template to control IO    
+IO_From_PICO
+    [Tags]   OK
+    [Template]  GPIO
+    ${1}
+    ${14}
+    ${16}
+    ${21}
 
-IO_2
-    ${io2}   write LED 2 ${CLIENT}
-    Log    ${io2}
-    # ${value}   write LED 16
-    # Should Be True   ${value}
+# one test case for controling all IO's
+*** Keywords ***
+GPIO
+    [Arguments]  ${GPIO_CONTROL}
+    ${io}  writting LED ${CLIENT} ${GPIO_CONTROL}
+    Log  ${io}
 
-IO_16
-    ${io16}   write LED 16 ${CLIENT}
-    Log    ${io16}
-    # ${value}   write LED 16
-    # Should Be True   ${value}
 
-IO_18
-    ${io18}   write LED 18 ${CLIENT}
-    Log    ${io18}
-    # ${value}  write LED 18
-    # Log    ${value}
+
