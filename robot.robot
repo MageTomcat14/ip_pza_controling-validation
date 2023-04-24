@@ -20,6 +20,8 @@ IO_From_PICO
     ${10}
     ${16}
     ${21}
+    ${22}
+    ${28}
     
 # one test case for controling all IO's
 *** Keywords ***
