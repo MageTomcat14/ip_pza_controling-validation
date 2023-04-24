@@ -1,4 +1,4 @@
-*** Settings ***
+* Settings ***
 Library    pza.py
 Library    String
 Resource   test_env.resource
@@ -16,17 +16,14 @@ ConnectionToBrocker
 IO_From_PICO
     [Tags]   OK
     [Template]  GPIO
-    ${1}
-    ${14}
+    ${0}
+    ${10}
     ${16}
     ${21}
-
+    
 # one test case for controling all IO's
 *** Keywords ***
 GPIO
     [Arguments]  ${GPIO_CONTROL}
     ${io}  writting LED ${CLIENT} ${GPIO_CONTROL}
     Log  ${io}
-
-
-
