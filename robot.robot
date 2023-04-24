@@ -25,5 +25,5 @@ IO_From_PICO
 *** Keywords ***
 GPIO
     [Arguments]  ${GPIO_CONTROL}
-    ${io}  writting LED ${CLIENT} ${GPIO_CONTROL}
-    Log  ${io}
+    ${direction}  writting DIRECTION & STATE ${CLIENT} ${GPIO_CONTROL}
+    Log  ${direction}

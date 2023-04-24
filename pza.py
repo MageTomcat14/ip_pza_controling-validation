@@ -25,15 +25,23 @@ def init():
     return pzaClient
 
 
-@keyword("writting LED ${VALUE} ${GPIO}")
+@keyword("writting DIRECTION & STATE ${VALUE} ${GPIO}")
 def controlingLEDs(CLIENT, GPIO):
 
     pzaTOPICGENERAL=f"pza/my_lab_server/pza_modbus_dio/My_Input_Output_GPIO{GPIO}"
     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
     
-    d.direction.value.set(f"toggle_led_{GPIO}")
+    d.direction.value.set(GPIO)
     time.sleep(1)
-    d.direction.pull.set("open")
+    d.direction.pull.set("up")
     time.sleep(1)
     d.direction.polling_cycle.set(10)
     time.sleep(1)
+    d.state.active.set(False)
+    time.sleep(1)
+    d.state.active_low.set(True)
+    time.sleep(1)
+    d.state.polling_cycle.set(100)
+    time.sleep(1)
+
+
