@@ -19,5 +19,9 @@ docker compose needs to be run
 | GPIO 1  |      INPUT        |
 | GPIO 10 |     OUTPUT    |  
 | GPIO 11 |    INPUT     | 
+| GPIO 16 |     OUTPUT    | 
+| GPIO 17 |    INTPUT     |
 | GPIO 20 |     INPUT    | 
 | GPIO 21 |    OUTPUT     |  
+| GPIO 27 |    INPUT     |  
+| GPIO 28 |    OUTPUT     |  

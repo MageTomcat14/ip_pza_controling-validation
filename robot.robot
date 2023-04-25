@@ -14,13 +14,12 @@ ConnectionToBrocker
 
 # create the template to control IO    
 IO_From_PICO
-    [Tags]   OK
-    [Template]  GPIO
+    [Tags]    OK
+    [Template]    GPIO
     ${0}
     ${10}
     ${16}
     ${21}
-    ${22}
     ${28}
     
 # one test case for controling all IO's
