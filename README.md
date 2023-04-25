@@ -14,7 +14,7 @@ docker compose needs to be run
 # IO's
 
 | IO's             | type          |
-| :--------------- |:---------------:|
+| :--------------- |:-------------:|
 | GPIO 0  |         OUTPUT
 | GPIO 1  |      INPUT        |
 | GPIO 10 |     OUTPUT    |  
