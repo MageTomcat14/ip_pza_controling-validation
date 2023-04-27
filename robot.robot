@@ -16,16 +16,15 @@ ConnectionToBrocker
 IO_From_PICO
     [Tags]    OK
     [Template]    GPIO
-    ${0}
-    ${10}
-    ${16}
-    ${21}
-    ${25}
-    ${28}
+    ${0}    ${1}   
+    ${10}   ${11} 
+    ${16}   ${17}
+    ${21}   ${22} 
+    ${26}   ${27} 
     
 # one test case for controling all IO's
 *** Keywords ***
 GPIO
-    [Arguments]  ${GPIO_CONTROL}
-    ${direction}  writting DIRECTION & STATE ${CLIENT} ${GPIO_CONTROL}
+    [Arguments]  ${GPIO_OUT}    ${GPIO_IN}
+    ${direction}  writting DIRECTION & STATE ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
     Log  ${direction}
