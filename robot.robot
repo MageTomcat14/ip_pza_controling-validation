@@ -1,7 +1,6 @@
 * Settings ***
 Library    testing.py
 Library    String
-Resource   test_env.resource
 Library    Collections
 
 
@@ -17,6 +16,19 @@ IO_From_PICO_SET
     [Tags]    OK
     [Template]    GPIO_SET 
     ${0}    ${1}   
+    ${2}    ${3}
+    ${4}    ${5}   
+    # ${6}    ${7} 
+    # ${8}    ${9}   
+    # ${10}    ${11} 
+    # ${12}    ${13}   
+    # ${14}    ${15} 
+    # ${16}    ${17}   
+    # ${18}    ${19} 
+    # ${20}    ${21}   
+    # ${21}    ${22} 
+    # ${26}    ${27}   
+    # ${27}    ${28}  
 
 # # one test case for controling all IO's
 *** Keywords ***
@@ -31,7 +43,6 @@ GPIO_SET
 
 
 
-    # writting DIRECTION & STATE of output ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
 
 
 

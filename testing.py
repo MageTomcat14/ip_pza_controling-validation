@@ -28,8 +28,8 @@ def init():
 @keyword("writting DIRECTION of IO ${CLIENT} ${GPIO} ${GPIO_IN}")
 def settingDir(CLIENT, GPIO, GPIO_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO_IN}"
+    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
+    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
 
     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
     d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
@@ -41,8 +41,8 @@ def settingDir(CLIENT, GPIO, GPIO_IN):
 @keyword("setting pulls ${CLIENT} ${GPIO} ${GPIO_IN}")
 def settingPulls(CLIENT, GPIO, GPIO_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO_IN}"
+    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
+    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
 
     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
     d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
@@ -55,21 +55,23 @@ def settingPulls(CLIENT, GPIO, GPIO_IN):
 @keyword("setting pulling cycle ${CLIENT} ${GPIO} ${GPIO_IN}")
 def settingPullingCycle(CLIENT, GPIO, GPIO_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO_IN}"
+    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
+    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
 
     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
     d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
     
     logger.console("setting the pulling cycle")
-    d.direction.polling_cycle.set(1)
-    d1.direction.polling_cycle.set(1)
+    d.direction.polling_cycle.set(0.1)
+    d.state.polling_cycle.set(0.1)
+    d1.direction.polling_cycle.set(0.1)
+    d1.state.polling_cycle.set(0.1)
 
 @keyword("setting active state low ${CLIENT} ${GPIO} ${GPIO_IN}")
 def settingActiveLow(CLIENT, GPIO, GPIO_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO_IN}"
+    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
+    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
 
     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
     d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
@@ -82,8 +84,8 @@ def settingActiveLow(CLIENT, GPIO, GPIO_IN):
 @keyword("writting to output and getting the input ${CLIENT} ${GPIO} ${GPIO_IN}")
 def writtingOutput(CLIENT, GPIO, GPIO_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO_IN}"
+    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
+    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
 
     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
     d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
@@ -98,46 +100,3 @@ def writtingOutput(CLIENT, GPIO, GPIO_IN):
     time.sleep(1)
     result = d1.state.active.get()
     logger.console(result)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# @keyword("writting DIRECTION & STATE of output ${CLIENT} ${GPIO} ${GPIO_IN}")
-# def setting(CLIENT, GPIO, GPIO_IN):
-
-#     pzaTOPICGENERAL=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO}"
-#     pzaTOPICGENERAL1=f"pza/lab_paul/driver_of_PaulFisher/control_paul_IO{GPIO_IN}"
-
-#     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
-#     d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
-    
-#     logger.console("main function")
-#     while True : 
-#         d.direction.value.set("out")
-#         time.sleep(1)
-#         d.direction.pull.set("up")
-#         time.sleep(1)
-#         d.direction.polling_cycle.set(1)
-#         time.sleep(1)
-
-#         d.state.active_low.set(False)
-#         time.sleep(1)
-#         d.state.active.set(True)
-#         time.sleep(1)
-#         logger.console(d1.state.active.get())
-#         time.sleep(2)
-#         d.state.active.set(False)
-#         time.sleep(1)
-#         d.state.polling_cycle.set(1)
-#         time.sleep(1)
-#         logger.console(d1.state.active.get())
