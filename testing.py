@@ -73,20 +73,30 @@ def settingActiveLow(INSTANCE_OUT, INSTANCE_IN):
     INSTANCE_IN.state.active_low.set(False)
 
 
-@keyword("writting to output and getting the input ${INSTANCE_OUT} ${INSTANCE_IN}")
-def writtingOutput(INSTANCE_OUT, INSTANCE_IN):
 
+@keyword("setting IO ${GPIO} to true ${INSTANCE_OUT}")
+def settingToTrue(GPIO, INSTANCE_OUT):
 
-    logger.console("setting writting the IO")
+    logger.console(f"setting IO {GPIO} to True")
     INSTANCE_OUT.state.active.set(True)
     time.sleep(1)
-    result = INSTANCE_IN.state.active.get()
-    logger.console(result)
-    time.sleep(1)
+
+@keyword("setting IO ${GPIO} to False ${INSTANCE_OUT}")
+def settingToTrueFalse(GPIO, INSTANCE_OUT):
+
+    logger.console(f"setting IO {GPIO} to False")
     INSTANCE_OUT.state.active.set(False)
     time.sleep(1)
+
+
+@keyword("getting the value of IO ${GPIO} ${INSTANCE_IN}")
+def getValue(GPIO, INSTANCE_IN):
+    logger.console(f"get the value of {GPIO}")
     result = INSTANCE_IN.state.active.get()
     logger.console(result)
+    time.sleep(1)
+
+
 
 
 @keyword("ending")

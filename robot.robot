@@ -45,8 +45,12 @@ GPIO_SET
     setting pulls ${INSTANCE_OUT} ${INSTANCE_IN}
     setting pulling cycle ${INSTANCE_OUT} ${INSTANCE_IN}
     setting active state low ${INSTANCE_OUT} ${INSTANCE_IN}
-    writting to output and getting the input ${INSTANCE_OUT} ${INSTANCE_IN}
 
+    # write and read
+    setting IO ${GPIO_OUT} to true ${INSTANCE_OUT}
+    getting the value of IO ${GPIO_IN} ${INSTANCE_IN}
+    setting IO ${GPIO_OUT} to False ${INSTANCE_OUT}
+    getting the value of IO ${GPIO_IN} ${INSTANCE_IN}
 
 
 *** Test Cases ***
