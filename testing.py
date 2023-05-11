@@ -34,12 +34,17 @@ def declareTopics(CLIENT, GPIO, GPIO_IN):
 
     return d, d1
 
-@keyword("writting DIRECTION of IO ${INSTANCE_OUT} ${INSTANCE_IN}")
-def settingDir(INSTANCE_OUT, INSTANCE_IN):
 
-    logger.console("setting the direction of the IO")
+@keyword("setting IO ${GPIO_OUT} to output ${INSTANCE_OUT}")
+def setOutput(GPIO_OUT, INSTANCE_OUT):
+    logger.console(f"setting IO {GPIO_OUT} to output")
     INSTANCE_OUT.direction.value.set("out")
+
+@keyword("setting IO ${GPIO_IN} to input ${INSTANCE_IN}")
+def setInput(GPIO_IN, INSTANCE_IN):
+    logger.console(f"setting IO {GPIO_IN} to input")
     INSTANCE_IN.direction.value.set("in")
+
 
 @keyword("setting pulls ${INSTANCE_OUT} ${INSTANCE_IN}")
 def settingPulls(INSTANCE_OUT, INSTANCE_IN):
@@ -82,3 +87,8 @@ def writtingOutput(INSTANCE_OUT, INSTANCE_IN):
     time.sleep(1)
     result = INSTANCE_IN.state.active.get()
     logger.console(result)
+
+
+@keyword("ending")
+def end():
+    logger.console("tests finished")

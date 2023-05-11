@@ -18,7 +18,7 @@ IO_From_PICO_SET
     ${0}    ${1}   
     ${2}    ${3}
     ${4}    ${5}   
-    # ${6}    ${7} 
+    ${6}    ${7} 
     # ${8}    ${9}   
     # ${10}    ${11} 
     # ${12}    ${13}   
@@ -33,11 +33,15 @@ IO_From_PICO_SET
 # # one test case for controling all IO's
 *** Keywords ***
 GPIO_SET
+
+    [Documentation]    Testing the inputs and outputs of the PICO
+    [Tags]    OK        
     [Arguments]  ${GPIO_OUT}    ${GPIO_IN}
-    
     ${INSTANCE_OUT}    ${INSTANCE_IN}    declaring topics and instances ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
 
-    writting DIRECTION of IO ${INSTANCE_OUT} ${INSTANCE_IN}
+
+    setting IO ${GPIO_OUT} to output ${INSTANCE_OUT}
+    setting IO ${GPIO_IN} to input ${INSTANCE_IN}
     setting pulls ${INSTANCE_OUT} ${INSTANCE_IN}
     setting pulling cycle ${INSTANCE_OUT} ${INSTANCE_IN}
     setting active state low ${INSTANCE_OUT} ${INSTANCE_IN}
@@ -45,11 +49,9 @@ GPIO_SET
 
 
 
-
-
-
-
-
+*** Test Cases ***
+END OF TESTS
+    ending
 
 
 
