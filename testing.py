@@ -21,82 +21,64 @@ def init():
     logger.console("scanning the interfaces..")
     # for topic in inter:
     #     logger.console(f"- {topic} => {inter[topic]['type']}")
+    return pzaClient
 
+@keyword("declaring topics and instances ${CLIENT} ${GPIO} ${GPIO_IN}")
+def declareTopics(CLIENT, GPIO, GPIO_IN):
 
+    pzaTOPICGENERAL_OUT=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
+    pzaTOPICGENERAL_IN=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
 
+    d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL_OUT, client=CLIENT)
+    d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL_IN, client=CLIENT)
 
-@keyword("writting DIRECTION of IO ${CLIENT} ${GPIO} ${GPIO_IN}")
-def settingDir(CLIENT, GPIO, GPIO_IN):
+    return d, d1
 
-    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
+@keyword("writting DIRECTION of IO ${INSTANCE_OUT} ${INSTANCE_IN}")
+def settingDir(INSTANCE_OUT, INSTANCE_IN):
 
-    d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
-    d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
-    
     logger.console("setting the direction of the IO")
-    d.direction.value.set("out")
-    d1.direction.value.set("in")
+    INSTANCE_OUT.direction.value.set("out")
+    INSTANCE_IN.direction.value.set("in")
 
-@keyword("setting pulls ${CLIENT} ${GPIO} ${GPIO_IN}")
-def settingPulls(CLIENT, GPIO, GPIO_IN):
-
-    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
-
-    d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
-    d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
-    
+@keyword("setting pulls ${INSTANCE_OUT} ${INSTANCE_IN}")
+def settingPulls(INSTANCE_OUT, INSTANCE_IN):
+ 
     logger.console("setting the pulls")
-    d.direction.pull.set("up")
-    d1.direction.pull.set("down")
+    INSTANCE_OUT.direction.pull.set("up")
+    INSTANCE_IN.direction.pull.set("down")
 
 
-@keyword("setting pulling cycle ${CLIENT} ${GPIO} ${GPIO_IN}")
-def settingPullingCycle(CLIENT, GPIO, GPIO_IN):
+@keyword("setting pulling cycle ${INSTANCE_OUT} ${INSTANCE_IN}")
+def settingPullingCycle(INSTANCE_OUT, INSTANCE_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
 
-    d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
-    d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
-    
     logger.console("setting the pulling cycle")
-    d.direction.polling_cycle.set(0.1)
-    d.state.polling_cycle.set(0.1)
-    d1.direction.polling_cycle.set(0.1)
-    d1.state.polling_cycle.set(0.1)
+    INSTANCE_OUT.direction.polling_cycle.set(0.1)
+    INSTANCE_OUT.state.polling_cycle.set(0.1)
+    INSTANCE_IN.direction.polling_cycle.set(0.1)
+    INSTANCE_IN.state.polling_cycle.set(0.1)
 
-@keyword("setting active state low ${CLIENT} ${GPIO} ${GPIO_IN}")
-def settingActiveLow(CLIENT, GPIO, GPIO_IN):
+@keyword("setting active state low ${INSTANCE_OUT} ${INSTANCE_IN}")
+def settingActiveLow(INSTANCE_OUT, INSTANCE_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
-
-    d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
-    d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
-    
+ 
     logger.console("setting the active state low")
-    d.state.active_low.set(False)
-    d1.state.active_low.set(False)
+    INSTANCE_OUT.state.active_low.set(False)
+    INSTANCE_IN.state.active_low.set(False)
 
 
-@keyword("writting to output and getting the input ${CLIENT} ${GPIO} ${GPIO_IN}")
-def writtingOutput(CLIENT, GPIO, GPIO_IN):
+@keyword("writting to output and getting the input ${INSTANCE_OUT} ${INSTANCE_IN}")
+def writtingOutput(INSTANCE_OUT, INSTANCE_IN):
 
-    pzaTOPICGENERAL=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
-    pzaTOPICGENERAL1=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
-
-    d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL, client=CLIENT)
-    d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL1, client=CLIENT)
 
     logger.console("setting writting the IO")
-    d.state.active.set(True)
+    INSTANCE_OUT.state.active.set(True)
     time.sleep(1)
-    result = d1.state.active.get()
+    result = INSTANCE_IN.state.active.get()
     logger.console(result)
     time.sleep(1)
-    d.state.active.set(False)
+    INSTANCE_OUT.state.active.set(False)
     time.sleep(1)
-    result = d1.state.active.get()
+    result = INSTANCE_IN.state.active.get()
     logger.console(result)

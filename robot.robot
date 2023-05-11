@@ -34,12 +34,14 @@ IO_From_PICO_SET
 *** Keywords ***
 GPIO_SET
     [Arguments]  ${GPIO_OUT}    ${GPIO_IN}
+    
+    ${INSTANCE_OUT}    ${INSTANCE_IN}    declaring topics and instances ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
 
-    writting DIRECTION of IO ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
-    setting pulls ${CLIENT} ${GPIO_OUT} ${GPIO_IN} 
-    setting pulling cycle ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
-    setting active state low ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
-    writting to output and getting the input ${CLIENT} ${GPIO_OUT} ${GPIO_IN}
+    writting DIRECTION of IO ${INSTANCE_OUT} ${INSTANCE_IN}
+    setting pulls ${INSTANCE_OUT} ${INSTANCE_IN}
+    setting pulling cycle ${INSTANCE_OUT} ${INSTANCE_IN}
+    setting active state low ${INSTANCE_OUT} ${INSTANCE_IN}
+    writting to output and getting the input ${INSTANCE_OUT} ${INSTANCE_IN}
 
 
 
