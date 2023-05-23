@@ -46,23 +46,26 @@ def setInput(GPIO_IN, INSTANCE_IN):
     INSTANCE_IN.direction.value.set("in")
 
 
-@keyword("setting pulls ${INSTANCE_OUT} ${INSTANCE_IN}")
-def settingPulls(INSTANCE_OUT, INSTANCE_IN):
+
+@keyword("setting pull of ${GPIO} ${INSTANCE_IN}")
+def settingPullInput(GPIO, INSTANCE_IN):
  
-    logger.console("setting the pulls")
-    INSTANCE_OUT.direction.pull.set("up")
+    logger.console(f"setting the pull of the input IO {GPIO}")
     INSTANCE_IN.direction.pull.set("down")
 
 
-@keyword("setting pulling cycle ${INSTANCE_OUT} ${INSTANCE_IN}")
-def settingPullingCycle(INSTANCE_OUT, INSTANCE_IN):
+
+@keyword("setting pulling cycle of IO ${GPIO} and ${GPIO_OUT} ${INSTANCE_OUT} ${INSTANCE_IN}")
+def settingPullingCycle(GPIO, GPIO_OUT, INSTANCE_OUT, INSTANCE_IN):
 
 
-    logger.console("setting the pulling cycle")
+    logger.console(f"setting the pulling cycle of IO {GPIO_OUT} and {GPIO}")
+
     INSTANCE_OUT.direction.polling_cycle.set(0.1)
     INSTANCE_OUT.state.polling_cycle.set(0.1)
     INSTANCE_IN.direction.polling_cycle.set(0.1)
     INSTANCE_IN.state.polling_cycle.set(0.1)
+
 
 @keyword("setting active state low ${INSTANCE_OUT} ${INSTANCE_IN}")
 def settingActiveLow(INSTANCE_OUT, INSTANCE_IN):
@@ -70,20 +73,17 @@ def settingActiveLow(INSTANCE_OUT, INSTANCE_IN):
  
     logger.console("setting the active state low")
     INSTANCE_OUT.state.active_low.set(False)
-    INSTANCE_IN.state.active_low.set(False)
-
 
 
 @keyword("setting IO ${GPIO} to true ${INSTANCE_OUT}")
 def settingToTrue(GPIO, INSTANCE_OUT):
-
     logger.console(f"setting IO {GPIO} to True")
     INSTANCE_OUT.state.active.set(True)
     time.sleep(1)
 
+
 @keyword("setting IO ${GPIO} to False ${INSTANCE_OUT}")
 def settingToTrueFalse(GPIO, INSTANCE_OUT):
-
     logger.console(f"setting IO {GPIO} to False")
     INSTANCE_OUT.state.active.set(False)
     time.sleep(1)
@@ -91,14 +91,22 @@ def settingToTrueFalse(GPIO, INSTANCE_OUT):
 
 @keyword("getting the value of IO ${GPIO} ${INSTANCE_IN}")
 def getValue(GPIO, INSTANCE_IN):
-    logger.console(f"get the value of {GPIO}")
+    logger.console(f"get the value of IO {GPIO}")
     result = INSTANCE_IN.state.active.get()
     logger.console(result)
     time.sleep(1)
 
+@keyword("configure pulls to a output ${GPIO} ${INSTANCE_OUT}")
+def errorPULL(GPIO, INSTANCE_OUT):
+    logger.console(f"check error pull {GPIO}")
+    INSTANCE_OUT.direction.pull.set("down")
 
-
+@keyword("write to a input ${GPIO} ${INSTANCE_IN}")
+def errorWRITE(GPIO, INSTANCE_IN):
+    logger.console(f"check error write {GPIO}")
+    INSTANCE_IN.state.active.set(True)
 
 @keyword("ending")
 def end():
+    
     logger.console("tests finished")
