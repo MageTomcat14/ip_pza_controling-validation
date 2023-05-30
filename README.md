@@ -34,3 +34,7 @@
 | GPIO 27  |      INPUT & OUTPUT        |
 | GPIO 28 |      INPUT        |
 
+
+
+# You can do the following schematic
+
