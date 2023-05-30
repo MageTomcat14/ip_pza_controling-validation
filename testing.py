@@ -19,15 +19,14 @@ def init():
 
     # list all the topics
     logger.console("scanning the interfaces..")
-    # for topic in inter:
-    #     logger.console(f"- {topic} => {inter[topic]['type']}")
+
     return pzaClient
 
 @keyword("declaring topics and instances ${CLIENT} ${GPIO} ${GPIO_IN}")
 def declareTopics(CLIENT, GPIO, GPIO_IN):
 
-    pzaTOPICGENERAL_OUT=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO}"
-    pzaTOPICGENERAL_IN=f"pza/lab_paul/io_pza_controling/testing_of_io_controling{GPIO_IN}"
+    pzaTOPICGENERAL_OUT=f"pza/lab_paul/io_pza_controling/testing_of_io_controling-{GPIO}"
+    pzaTOPICGENERAL_IN=f"pza/lab_paul/io_pza_controling/testing_of_io_controling-{GPIO_IN}"
 
     d = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL_OUT, client=CLIENT)
     d1 = Dio(addr=BROKER_ADDR, port=BROKER_PORT, topic=pzaTOPICGENERAL_IN, client=CLIENT)
@@ -61,16 +60,15 @@ def settingPullingCycle(GPIO, GPIO_OUT, INSTANCE_OUT, INSTANCE_IN):
 
     logger.console(f"setting the pulling cycle of IO {GPIO_OUT} and {GPIO}")
 
-    INSTANCE_OUT.direction.polling_cycle.set(0.1)
-    INSTANCE_OUT.state.polling_cycle.set(0.1)
-    INSTANCE_IN.direction.polling_cycle.set(0.1)
-    INSTANCE_IN.state.polling_cycle.set(0.1)
+    INSTANCE_OUT.direction.polling_cycle.set(0.5)
+    INSTANCE_OUT.state.polling_cycle.set(0.5)
+    INSTANCE_IN.direction.polling_cycle.set(0.5)
+    INSTANCE_IN.state.polling_cycle.set(0.5)
 
 
 @keyword("setting active state low ${INSTANCE_OUT} ${INSTANCE_IN}")
 def settingActiveLow(INSTANCE_OUT, INSTANCE_IN):
 
- 
     logger.console("setting the active state low")
     INSTANCE_OUT.state.active_low.set(False)
 
@@ -109,4 +107,4 @@ def errorWRITE(GPIO, INSTANCE_IN):
 @keyword("ending")
 def end():
     
-    logger.console("tests finished")
+    logger.console("TEST ARE DONE")
