@@ -38,3 +38,4 @@
 
 # You can do the following schematic
 
+![](schematic.png)
